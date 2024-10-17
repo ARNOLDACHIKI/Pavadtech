@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nairobi Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nairobi Map with Images</h1>
+    <div id="map"></div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-1.286389, 36.817223], 12);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Example markers (replace these with dynamic data from your application)
+        var images = [
+            {
+                "latitude": -1.2921,
+                "longitude": 36.8219,
+                "image_url": "https://example.com/image1.jpg",
+                "captured_at": "2024-01-01"
+            },
+            {
+                "latitude": -1.2801,
+                "longitude": 36.8275,
+                "image_url": "https://example.com/image2.jpg",
+                "captured_at": "2024-01-02"
+            }
+            // Add more images as needed
+        ];
+
+        // Add markers to the map
+        images.forEach(function(image) {
+            L.marker([image.latitude, image.longitude]).addTo(map)
+                .bindPopup('<img src="' + image.image_url + '" width="200px"><br>Captured at: ' + image.captured_at);
+        });
+    </script>
+</body>
+</html>
